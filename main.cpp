@@ -3,7 +3,7 @@ using std::cout;
 using std::endl;
 
 bool gameOver;
-const int width = 20;
+const int width = 40;
 const int height = 20;
 int x, y = 0;
 int fruitX = 0;
@@ -36,9 +36,10 @@ void draw()
 
     char head = '0';
     char tail = 'o';
+    char fruit = 'F';
 
     // drawing the top
-    for (int i = 0; i < width; i++)
+    for (int i = 0; i < width / 2; i++)
     {
         cout << "# ";
     }
@@ -53,28 +54,28 @@ void draw()
             {
                 cout << "#";
             }
-            if (j == width - 1)
+            else if (j == width - 1)
             {
                 cout << "#\n";
             }
-
-            if (j == x && i == y)
-            {
-                cout << head;
-            }
-            else if (i == fruitX && j == fruitY)
-            {
-                cout << 'F';
-            }
             else
             {
-                cout << ' ';
+                cout << " ";
             }
+
+            // if (j == x && i == y)
+            // {
+            //     cout << head;
+            // }
+            // else if (i == fruitX && j == fruitY)
+            // {
+            //     cout << fruit;
+            // }
         }
     }
 
     // drawing the bottom
-    for (int i = 0; i < width; i++)
+    for (int i = 0; i < width / 2; i++)
     {
         cout << "# ";
     }
