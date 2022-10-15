@@ -1,9 +1,10 @@
 #include <iostream>
+#include <conio.h> // console input output
 using std::cout;
 using std::endl;
 
 bool gameOver;
-const int width = 40;
+const int width = 20;
 const int height = 20;
 int x, y = 0;
 int fruitX = 0;
@@ -39,9 +40,9 @@ void draw()
     char fruit = 'F';
 
     // drawing the top
-    for (int i = 0; i < width / 2; i++)
+    for (int i = 0; i < width + 2; i++)
     {
-        cout << "# ";
+        cout << "#";
     }
     cout << '\n';
 
@@ -54,36 +55,42 @@ void draw()
             {
                 cout << "#";
             }
-            else if (j == width - 1)
+
+            if (j == x && i == y)
             {
-                cout << "#\n";
+                cout << head;
+            }
+            else if (i == fruitY && j == fruitX)
+            {
+                cout << fruit;
             }
             else
             {
                 cout << " ";
             }
 
-            // if (j == x && i == y)
-            // {
-            //     cout << head;
-            // }
-            // else if (i == fruitX && j == fruitY)
-            // {
-            //     cout << fruit;
-            // }
+            if (j == width - 1)
+            {
+                cout << "#";
+            }
         }
+        cout << '\n';
     }
 
     // drawing the bottom
-    for (int i = 0; i < width / 2; i++)
+    for (int i = 0; i < width + 2; i++)
     {
-        cout << "# ";
+        cout << "#";
     }
     cout << '\n';
 }
 
 void input()
 {
+    // if (_kbhit()) // if keyboard hit - returns possitive num if is true
+    // {
+    //     /* code */
+    // }
 }
 
 void logic()
@@ -92,14 +99,14 @@ void logic()
 
 int main(int argc, char const *argv[])
 {
-    // setUp();
-    // while (!gameOver)
-    // {
-    draw();
-    //     input();
-    //     logic();
-    //     // sleep(10);
-    // }
+    setUp();
+    while (!gameOver)
+    {
+        draw();
+        input();
+        logic();
+        // sleep(10);
+    }
 
     return 0;
 }
