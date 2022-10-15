@@ -87,10 +87,10 @@ void draw()
 
 void input()
 {
-    // if (_kbhit()) // if keyboard hit - returns possitive num if is true
-    // {
-    //     /* code */
-    // }
+    if (_kbhit()) // if keyboard hit - returns possitive num if is true
+    {
+        /* code */
+    }
 }
 
 void logic()
