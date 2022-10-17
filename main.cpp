@@ -79,6 +79,7 @@ void draw()
     {
         for (int j = 0; j < width; j++)
         {
+            // drawing the walls (left)
             if (j == 0)
             {
                 cout << "#";
@@ -110,6 +111,7 @@ void draw()
                 }
             }
 
+            // drawing the walls (right)
             if (j == width - 1)
             {
                 cout << "#";
@@ -242,7 +244,7 @@ void logic()
     }
 }
 
-int main(int argc, char const *argv[])
+int main()
 {
     setUp();
     while (!gameOver)
