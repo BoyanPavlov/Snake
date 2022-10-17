@@ -1,5 +1,8 @@
 #include <iostream>
-#include <conio.h> // console input output
+#include <conio.h>   // console input output
+#include <windows.h> // used for the sleep function in order to slow down the snake
+
+using std::cin;
 using std::cout;
 using std::endl;
 
@@ -24,6 +27,9 @@ enum eDirection
     e_DOWN
 } dir;
 
+char level;
+bool easy = true;
+
 void setUp()
 {
     gameOver = false;
@@ -33,6 +39,25 @@ void setUp()
     fruitX = rand() % width;
     fruitY = rand() % height;
     // score=0;
+
+    cout << "Choose your level:\n";
+    cout << "Press E for easy or H for hard\n";
+
+    do
+    {
+        cin >> level;
+        if (level != 'H' && level != 'E')
+        {
+            cout << "Please enter a correct option\n";
+            continue;
+        }
+
+        if (level == 'H')
+        {
+            easy = false;
+        }
+
+    } while (level != 'H' && level != 'E');
 }
 
 void draw()
@@ -171,9 +196,40 @@ void logic()
         break;
     }
 
-    if (x > width || x < 0 || y > height || y < 0)
+    if (easy)
     {
-        gameOver = true;
+        if (x >= width)
+        {
+            x = 0;
+        }
+        else if (x < 0)
+        {
+            x = width - 1;
+        }
+
+        if (y >= height)
+        {
+            y = 0;
+        }
+        else if (y < 0)
+        {
+            y = height - 1;
+        }
+    }
+    else
+    {
+        if (x > width || x < 0 || y > height || y < 0)
+        {
+            gameOver = true;
+        }
+    }
+
+    for (int i = 0; i < nTail; i++)
+    {
+        if (tailX[i] == x && tailY[i] == y)
+        {
+            gameOver = true;
+        }
     }
 
     if (x == fruitX && y == fruitY)
@@ -194,8 +250,10 @@ int main(int argc, char const *argv[])
         draw();
         input();
         logic();
-        // sleep(10);
+        Sleep(10); // used to slow down the snake
     }
+    system("cls");
+    cout << "Your score is: " << score << endl;
 
     return 0;
 }
